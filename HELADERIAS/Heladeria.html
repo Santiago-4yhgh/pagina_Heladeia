@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heladería - Deliciosos Sabores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #BEBCBC;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #ffc107;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0;
+            color: #581e1e;
+        }
+        
+        main {
+            padding: 10px;
+        }
+        
+        .helado {
+            margin-bottom: 20px;
+            overflow: hidden;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(255, 0, 0, 0.1);
+            padding: 10px;
+        }
+        
+        .helado img {
+            width: 20%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+        
+        .helado .info {
+            padding: 10px;
+        }
+        
+        .helado h2 {
+            margin: 0;
+        }
+        
+        .helado p {
+            margin: 1px 0;
+        }
+        
+        .sucursal {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .sucursal img {
+            width: 100px;
+            height: 200px;
+            object-fit: cover;
+            margin-right: 40px;
+        }
+        
+        .sucursal p {
+            margin: 0;
+        }
+        
+        .boton {
+            display: inline-block;
+            background-color: #0720ff;
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        .redes-sociales {
+            margin-top: 30px;
+        }
+        
+        .redes-sociales a {
+            display: inline-block;
+            margin-right: 30px;
+        }
+        
+        .video-container {
+            text-align: center;
+            margin: 90px 80px;
+        }
+        
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #fff;
+            border-left: 1px solid #ddd;
+            width: 250px;
+            height: 100vh;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-container h2 {
+            margin-top: 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        
+        .cart-item button:hover {
+            background-color: #cc0000;
+        }
+        
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .payment-method {
+            margin-top: 20px;
+        }
+        
+        .payment-method form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .payment-method label,
+        .payment-method select,
+        .payment-method input,
+        .payment-method button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Heladería - Deliciosos Sabores</h1>
+        <p><a href="resetas.html">Recetas</a></p>
+    </header>
+    <main>
+        <header>
+            <h1>Sabores Clásicos</h1>
+        </header>
+        <div class="helado">
+            <img src="cholate.jpg" alt="Helado de Chocolate">
+            <div class="info">
+                <h2>Helado de Chocolate</h2>
+                <p>Delicioso helado de chocolate con trozos de chocolate negro.</p>
+                <p>Precio: $12</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Chocolate', 12)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="fresa.jpg" alt="Helado de Fresa">
+            <div class="info">
+                <h2>Helado de Fresa</h2>
+                <p>Refrescante helado de fresa con trozos de fruta fresca.</p>
+                <p>Precio: $15</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Fresa', 15)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="re vainilla.jpg" alt="Helado de Vainilla">
+            <div class="info">
+                <h2>Helado de Vainilla</h2>
+                <p>Clásico helado de vainilla con salsa de caramelo y nueces.</p>
+                <p>Precio: $20</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Vainilla', 20)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="helado de menta con chispas de chocolate.jpg" alt="Helado de menta con chispas de chocolate">
+            <div class="info">
+                <h2>Helado de menta con chispas de chocolate</h2>
+                <p>Clásico helado de menta con chispas de chocolate.</p>
+                <p>Precio: $25</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de menta con chispas de chocolate', 25)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="helado de cafe.jpeg" alt="Helado de café">
+            <div class="info">
+                <h2>Helado de café</h2>
+                <p>Clásico helado de café.</p>
+                <p>Precio: $20</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de café', 20)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="re caramelo.jpg" alt="Helado de Caramelo">
+            <div class="info">
+                <h2>Helado de Caramelo</h2>
+                <p>Clásico helado de caramelo con sabor a cajeta.</p>
+                <p>Precio: $25</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Caramelo', 25)">Comprar</a>
+            </div>
+        </div>
+
+        <header>
+            <h1>Sabores de Frutas</h1>
+        </header>
+        <div class="helado">
+            <img src="re mango.jpg" alt="Helado de Mango">
+            <div class="info">
+                <h2>Helado de Mango</h2>
+                <p>Clásico helado de mango, dulce y ácido.</p>
+                <p>Precio: $20</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Mango', 20)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="re pistache.jpg" alt="Helado de Pistache">
+            <div class="info">
+                <h2>Helado de Pistache</h2>
+                <p>Clásico helado de pistache con un sabor exquisito.</p>
+                <p>Precio: $30</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Pistache', 30)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="re coco.jpg" alt="Helado de Coco">
+            <div class="info">
+                <h2>Helado de Coco</h2>
+                <p>Clásico helado de coco con sabor tropical.</p>
+                <p>Precio: $20</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Coco', 20)">Comprar</a>
+            </div>
+        </div>
+        <div class="helado">
+            <img src="re limon.jpg" alt="Helado de Limón">
+            <div class="info">
+                <h2>Helado de Limón</h2>
+                <p>Clásico helado de limón, dulce y ácido.</p>
+                <p>Precio: $15</p>
+                <a href="#" class="boton" onclick="addToCart('Helado de Limón', 15)">Comprar</a>
+            </div>
+        </div>
+
+        <section class="sucursal">
+            <img src="ubicacion.jpg" alt="Ubicación de la Sucursal">
+            <div>
+                <h2>Nuestra Sucursal</h2>
+                <p>Dirección: Calle de la Dulzura, #123, Ciudad de Sabores</p>
+                <p>Teléfono: 555-1234-567</p>
+                <p>Horario: Lunes a Viernes, 9am - 9pm</p>
+            </div>
+        </section>
+        <div class="video-container">
+            <h2>Conoce nuestro proceso de elaboración</h2>
+            <video controls>
+                <source src="video.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
+        <div class="redes-sociales">
+            <h2>Síguenos en nuestras redes sociales</h2>
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="facebook.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <img src="twitter.png" alt="Twitter">
+            </a>
+        </div>
+    </main>
+
+    <!-- Carrito de Compras -->
+    <section class="cart-container">
+        <h2>Carrito de Compras</h2>
+        <div id="cart-items"></div>
+        <div class="cart-footer">
+            <span>Total:</span>
+            <span id="cart-total">$0</span>
+        </div>
+
+        <!-- Sección de Forma de Pago -->
+        <div class="payment-method">
+            <h3>Forma de Pago</h3>
+            <form id="payment-form">
+                <label for="payment-method">Selecciona tu forma de pago:</label>
+                <select id="payment-method" name="payment-method">
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta">Tarjeta de Crédito/Débito 💳</option>
+                    <option value="transferencia">Transferencia Bancaria</option>
+                </select>
+
+                <div id="payment-details">
+                    <!-- Aquí se mostrarán los campos adicionales según el método de pago seleccionado -->
+                </div>
+
+                <button type="submit">Pagar</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        var cartItems = [];
+
+        function addToCart(productName, productPrice) {
+            cartItems.push({
+                name: productName,
+                price: productPrice
+            });
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            var cartItemsContainer = document.getElementById('cart-items');
+            var cartTotal = document.getElementById('cart-total');
+            cartItemsContainer.innerHTML = '';
+            var total = 0;
+
+            cartItems.forEach(function(item, index) {
+                var itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <span>${item.name} - $${item.price}</span>
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+                total += item.price;
+            });
+
+            cartTotal.textContent = '$' + total;
+        }
+
+        // Código para manejar la selección de forma de pago
+        document.getElementById('payment-method').addEventListener('change', function() {
+            const paymentDetails = document.getElementById('payment-details');
+            paymentDetails.innerHTML = ''; // Limpiar detalles previos
+
+            if (this.value === 'tarjeta') {
+                paymentDetails.innerHTML = `
+                    <label for="card-number">Número de Tarjeta:</label>
+                    <input type="text" id="card-number" name="card-number" required>
+                    <label for="card-expiry">Fecha de Expiración:</label>
+                    <input type="month" id="card-expiry" name="card-expiry" required>
+                    <label for="card-cvv">CVV:</label>
+                    <input type="text" id="card-cvv" name="card-cvv" required>
+                `;
+            } else if (this.value === 'transferencia') {
+                paymentDetails.innerHTML = `
+                    <p>Te enviaremos los detalles para realizar la transferencia bancaria.</p>
+                `;
+            } else if (this.value === 'efectivo') {
+                paymentDetails.innerHTML = `
+                    <p>Puedes pagar en efectivo al momento de la entrega.</p>
+                `;
+            }
+        });
+
+        // Código para manejar el envío del formulario de pago
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Pago procesado con éxito!');
+            // Aquí puedes agregar la lógica para procesar el pago
+        });
+    </script>
+</body>
+
+</html>

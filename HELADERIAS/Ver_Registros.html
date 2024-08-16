@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <title>Visualización de Registros</title>
+    <style>
+        body {
+            background-image: url('2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background: rgba(25, 0, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 0 50px rgb(255, 0, 0);
+        }
+        
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Registros</h1>
+        <hr>
+        <table id="recordsTable">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los registros se añadirán aquí mediante JavaScript -->
+            </tbody>
+        </table>
+        <a href="login/RegistroDeCuenta.html">Volver al registro</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.querySelector('#recordsTable tbody');
+            const registros = JSON.parse(localStorage.getItem('registros')) || [];
+
+            if (registros.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="2">No hay registros</td></tr>';
+            } else {
+                registros.forEach(registro => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${registro.usuario}</td>
+                        <td>${registro.contraseña}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

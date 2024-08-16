@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Actividades - Tercera Persona</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdfdfd;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 50%;
+            margin: auto;
+            overflow: hidden;
+            background: #b6b0b0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background: #3a8077;
+        }
+        
+        header {
+            background: #50b3a2;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin: 10px 0 5px;
+        }
+        
+        input[type="text"],
+        select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        input[type="submit"],
+        input[type="button"] {
+            padding: 10px;
+            border: none;
+            background: #50b3a2;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background: #3a8077;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Formulario de transportista</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <form id="formulario" action="transportistas.php" method="post">
+            <label for="nombre">Nombre de la Persona</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="ir_por_mercancia">Ir por Mercancia</label>
+            <select id="ir_por_mercancia" name="ir_por_mercancia" required>
+                <option value="">Seleccione una opción</option>
+                <option value="mercancia1">Mercancia 1</option>
+                <option value="mercancia2">Mercancia 2</option>
+                <option value="mercancia3">Mercancia 3</option>
+                <option value="mercancia4">Mercancia 4</option>
+            </select>
+
+            <input type="submit" value="Enviar" onclick="return enviarFormulario()">
+            <input type="submit" name="guardar" value="Guardar" onclick="return guardarFormulario()">
+            <input type="button" onclick="borrarFormulario()" value="Borrar">
+        </form>
+    </div>
+
+    <script>
+        function borrarFormulario() {
+            document.getElementById("nombre").value = "";
+            document.getElementById("ir_por_mercancia").selectedIndex = 0;
+        }
+
+        function enviarFormulario() {
+            // Aquí puedes agregar lógica para enviar el formulario
+            // Por ejemplo, enviar una solicitud AJAX, si es necesario
+            return true; // Permitir el envío del formulario
+        }
+
+        function guardarFormulario() {
+            // Aquí puedes agregar lógica para manejar el guardado
+            alert("Los datos han sido guardados correctamente.");
+            // Para prevenir el envío del formulario si solo quieres mostrar un mensaje:
+            return false;
+        }
+    </script>
+</body>
+
+</html>

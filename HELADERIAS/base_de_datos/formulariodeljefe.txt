@@ -1,0 +1,13 @@
+mysql> CREATE DATABASE formulario_db;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> USE formulario_db;
+Database changed
+mysql> CREATE TABLE actividades (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         nombre VARCHAR(255) NOT NULL,
+         pagar ENUM('persona1', 'persona2', 'persona3', 'persona4') NOT NULL,
+        hacer_cuentas TEXT NOT NULL,
+        fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     );
+Query OK, 0 rows affected (0.00 sec)

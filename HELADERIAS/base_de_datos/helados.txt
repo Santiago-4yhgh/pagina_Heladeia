@@ -1,0 +1,23 @@
+
+mysql> CREATE DATABASE IF NOT EXISTS helados_db;
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> USE helados_db;
+Database changed
+
+mysql> CREATE TABLE pedidos (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         nombre VARCHAR(255) NOT NULL,
+         email VARCHAR(255) NOT NULL,
+        direccion VARCHAR(255),
+         telefono VARCHAR(20),
+         sabor ENUM('chocolate', 'vainilla', 'fresa', 'mango', 'menta') NOT NULL,
+         tamano ENUM('pequeno', 'mediano', 'grande') NOT NULL,
+         toppings TEXT,
+         comentarios TEXT,
+         fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     );
+ERROR 1050 (42S01): Table 'pedidos' already exists
+ INSERT INTO pedidos (nombre, email, direccion, telefono, sabor, tamano, toppings, comentarios)
+     VALUES ('Juan Pérez', 'juan.perez@example.com', 'Calle Falsa 123', '555-1234', 'chocolate', 'mediano', '["chispas", "caramelo"]', 'Sin comentarios');
+Query OK, 1 row affected (0.00 sec)
