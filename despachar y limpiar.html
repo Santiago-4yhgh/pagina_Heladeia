@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Actividades - Segunda Persona</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 50%;
+            margin: auto;
+            overflow: hidden;
+            background: #961515;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        
+        header {
+            background: #50b3a2;
+            color: #0c0c0c;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin: 10px 0 5px;
+        }
+        
+        input[type="text"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        input[type="button"],
+        input[type="submit"] {
+            padding: 10px;
+            border: none;
+            background: #50b3a2;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        input[type="button"]:hover,
+        input[type="submit"]:hover {
+            background: #3a8077;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Formulario de despachar y limpiador de mesas</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <form id="activityForm" action="despachar_limpiar.php" method="POST">
+            <label for="nombre">Nombre de la Persona</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="despachar_clientes">Despachar Clientes</label>
+            <textarea id="despachar_clientes" name="despachar_clientes" rows="4" required></textarea>
+
+            <label for="limpiar_mesa">Limpiar Mesas</label>
+            <textarea id="limpiar_mesa" name="limpiar_mesa" rows="4" required></textarea>
+
+            <div class="button-group">
+                <input type="button" value="Guardar" onclick="guardarFormulario()">
+                <input type="button" value="Borrar" onclick="borrarFormulario()">
+                <input type="submit" value="Enviar">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function guardarFormulario() {
+            const nombre = document.getElementById('nombre').value;
+            const despacharClientes = document.getElementById('despachar_clientes').value;
+            const limpiarMesa = document.getElementById('limpiar_mesa').value;
+
+            localStorage.setItem('nombre', nombre);
+            localStorage.setItem('despacharClientes', despacharClientes);
+            localStorage.setItem('limpiarMesa', limpiarMesa);
+
+            alert('Formulario guardado');
+        }
+
+        function borrarFormulario() {
+            document.getElementById('activityForm').reset();
+            localStorage.removeItem('nombre');
+            localStorage.removeItem('despacharClientes');
+            localStorage.removeItem('limpiarMesa');
+
+            alert('Formulario borrado');
+        }
+
+        window.onload = function() {
+            const nombre = localStorage.getItem('nombre');
+            const despacharClientes = localStorage.getItem('despacharClientes');
+            const limpiarMesa = localStorage.getItem('limpiarMesa');
+
+            if (nombre) document.getElementById('nombre').value = nombre;
+            if (despacharClientes) document.getElementById('despachar_clientes').value = despacharClientes;
+            if (limpiarMesa) document.getElementById('limpiar_mesa').value = limpiarMesa;
+        }
+    </script>
+</body>
+
+</html>

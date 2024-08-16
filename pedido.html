@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pedido de Helados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+        
+        h2 {
+            color: #ff6347;
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        input[type="submit"],
+        button {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #e5533f;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .topping-label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Formulario de Pedido de Helados</h2>
+    <form id="orderForm" action="pedido.php" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion"><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono"><br>
+
+        <label for="sabor">Sabor de Helado:</label><br>
+        <select id="sabor" name="sabor" required>
+            <option value="chocolate">Chocolate</option>
+            <option value="vainilla">Vainilla</option>
+            <option value="fresa">Fresa</option>
+            <option value="mango">Mango</option>
+            <option value="menta">Menta</option>
+        </select><br>
+
+        <label for="tamano">Tamaño:</label><br>
+        <input type="radio" id="pequeno" name="tamano" value="pequeno" required>
+        <label for="pequeno">Pequeño</label><br>
+        <input type="radio" id="mediano" name="tamano" value="mediano">
+        <label for="mediano">Mediano</label><br>
+        <input type="radio" id="grande" name="tamano" value="grande">
+        <label for="grande">Grande</label><br>
+
+        <label for="toppings">Toppings:</label><br>
+        <input type="checkbox" id="chispas" name="toppings[]" value="chispas">
+        <label class="topping-label" for="chispas">Chispas de Chocolate</label><br>
+        <input type="checkbox" id="nueces" name="toppings[]" value="nueces">
+        <label class="topping-label" for="nueces">Nueces</label><br>
+        <input type="checkbox" id="caramelo" name="toppings[]" value="caramelo">
+        <label class="topping-label" for="caramelo">Caramelo</label><br>
+        <input type="checkbox" id="frutas" name="toppings[]" value="frutas">
+        <label class="topping-label" for="frutas">Frutas</label><br>
+
+        <label for="comentarios">Comentarios:</label><br>
+        <textarea id="comentarios" name="comentarios" rows="4"></textarea><br>
+
+        <div class="buttons">
+            <input type="submit" value="Enviar Pedido">
+            <button type="button" onclick="guardarFormulario()">Guardar</button>
+            <button type="button" onclick="borrarFormulario()">Borrar</button>
+        </div>
+    </form>
+
+    <script>
+        function guardarFormulario() {
+            localStorage.setItem('nombre', document.getElementById('nombre').value);
+            localStorage.setItem('email', document.getElementById('email').value);
+            localStorage.setItem('direccion', document.getElementById('direccion').value);
+            localStorage.setItem('telefono', document.getElementById('telefono').value);
+            localStorage.setItem('sabor', document.getElementById('sabor').value);
+            localStorage.setItem('tamano', document.querySelector('input[name="tamano"]:checked').value);
+            const toppings = Array.from(document.querySelectorAll('input[name="toppings[]"]:checked')).map(e => e.value);
+            localStorage.setItem('toppings', JSON.stringify(toppings));
+            localStorage.setItem('comentarios', document.getElementById('comentarios').value);
+            alert('Formulario guardado');
+        }
+
+        function borrarFormulario() {
+            document.getElementById('orderForm').reset();
+            alert('Formulario borrado');
+        }
+
+        function cargarFormulario() {
+            if (localStorage.getItem('nombre')) {
+                document.getElementById('nombre').value = localStorage.getItem('nombre');
+                document.getElementById('email').value = localStorage.getItem('email');
+                document.getElementById('direccion').value = localStorage.getItem('direccion');
+                document.getElementById('telefono').value = localStorage.getItem('telefono');
+                document.getElementById('sabor').value = localStorage.getItem('sabor');
+                document.querySelector(`input[name="tamano"][value="${localStorage.getItem('tamano')}"]`).checked = true;
+                const toppings = JSON.parse(localStorage.getItem('toppings'));
+                toppings.forEach(topping => {
+                    document.querySelector(`input[name="toppings[]"][value="${topping}"]`).checked = true;
+                });
+                document.getElementById('comentarios').value = localStorage.getItem('comentarios');
+            }
+        }
+
+        window.onload = cargarFormulario;
+    </script>
+</body>
+
+</html>
